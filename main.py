@@ -16,18 +16,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 
-'''
-Make sure the required packages are installed: 
-Open the Terminal in PyCharm (bottom left). 
 
-On Windows type:
-python -m pip install -r requirements.txt
-
-On MacOS type:
-pip3 install -r requirements.txt
-
-This will install the packages from the requirements.txt for this project.
-'''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
@@ -45,7 +34,6 @@ def admin_only(f):
         return f(*args, **kwargs)
     return decorated_function
 
-# TODO: Configure Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -76,7 +64,7 @@ class BlogPost(db.Model):
     img_url: Mapped[str] = mapped_column(String(250), nullable=False)
 
 
-# TODO: Create a User table for all your registered users.
+
 
 class User(UserMixin,db.Model):
     __tablename__ = "users"
